@@ -145,11 +145,20 @@
 
   
   <script>
+      let bgmPlayed = false;
+    function playBGMOnce() {
+      if (!bgmPlayed) {
+        const bgm = document.getElementById('bgm');
+        bgm.volume = 0.5; // 可調整音量
+        bgm.play().catch(e => console.log('背景音樂播放失敗:', e));
+        bgmPlayed = true;
+      }
+    }
     function goToPage(pageNumber) {
       document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
       document.getElementById('page' + pageNumber).classList.add('active');
 
-      
+      playBGMOnce();
 
       if ([5, 6, 7].includes(pageNumber)) {
         const video = document.querySelector('#video' + pageNumber);
